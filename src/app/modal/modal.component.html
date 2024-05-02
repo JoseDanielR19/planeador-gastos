@@ -1,0 +1,38 @@
+<div class="fondo-modal">
+  <div class="color-modal">
+    <div class="close">
+      <button (click)="closeModal()">
+        <img src="../../assets/close.svg" alt="" />
+      </button>
+    </div>
+    <div class="size-modal">
+      <form class="form" (ngSubmit)="onSubmit()">
+        <div class="name-spend">
+          <label for="name-spend">Nombre del gasto</label>
+          <input
+            type="text"
+            id="name-spend"
+            placeholder="Ingrese aquí el nombre gasto"
+            required
+            [(ngModel)]="expense.nameExpend"
+            name="nameExpend"
+          />
+        </div>
+        <div class="price-spend">
+          <label for="price-spend">Precio del gasto</label>
+          <input
+            type="number"
+            id="price-spend"
+            placeholder="Ingrese aquí el precio"
+            required
+            [(ngModel)]="expense.priceExpend"
+            name="priceExpend"
+          />
+        </div>
+        <button class="btn" type="submit">
+          {{ expense.id ? "Actualizar" : "Agregar" }}
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

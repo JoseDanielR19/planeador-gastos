@@ -1,0 +1,74 @@
+<div id="continue">
+  <div class="color-expense">
+    <div class="container-money">
+      <div class="container-text">
+        <h1>Ingresa Aquí Tu Presupuesto</h1>
+      </div>
+      <form action="" (ngSubmit)="onSubmit()">
+        <div class="container-input">
+          <span class="dollar-sign">$</span>
+          <input type="number" placeholder="Ingresa tu presupuesto" [(ngModel)]="budget.budget" />
+        </div>
+        <div class="color-container-info">
+          <div class="container-budget">
+            <p class="budget-text">Presupuesto:</p>
+            <p class="budget-number">$ {{budget.budget}}</p>
+          </div>
+          <div class="available-balance">
+            <p class="budget-text">Saldo disponible:</p>
+            <p class="budget-number">$ 300.000</p>
+          </div>
+          <div class="container-total-spends">
+            <p class="total-text">Total Gastos:</p>
+            <p class="total-spends">$ {{ totalGastosFormatted }}</p>
+          </div>
+        </div>
+        <div class="btn-spend">
+          <button class="btn">Agregar Presupuesto</button>
+        </div>
+      </form>
+      <!-- <div class="btn-spend">
+        <button class="btn">Agregar Presupuesto</button>
+      </div> -->
+    </div>
+    <div class="container-spends">
+      @if (expenses.length <= 0) {
+      <div class="notFound">
+        <div class="text-spends">
+          <h1>Aún no hay gastos ingresados</h1>
+        </div>
+        <div class="img-notfound">
+          <img src="../../assets/lupa.png" alt="not found" />
+        </div>
+      </div>
+      } @else {
+      <div class="text-spends">
+        <h1>Gastos ingresados</h1>
+      </div>
+      <div class="cards-spends">
+        <div *ngFor="let expense of expenses" class="card-spend">
+          <div class="text-spend">
+            <p>{{ expense.nameExpend }}</p>
+            <button (click)="deleteExpense(expense.id)">
+              <img src="../../assets/delete.svg" alt="delete" />
+            </button>
+          </div>
+          <div class="price-spend">
+            <p>$ {{ expense.priceExpend.toLocaleString() }}</p>
+            <button (click)="updateExpense(expense)">
+              <img src="../../assets/update.svg" alt="update" />
+            </button>
+          </div>
+        </div>
+      </div>
+      }
+      <div class="btn-spend">
+        <button (click)="openModal()" class="btn">Agregar Gastos</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+@if(modalVisible == true) {
+<app-modal></app-modal>
+}

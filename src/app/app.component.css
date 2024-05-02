@@ -1,0 +1,29 @@
+.navbar {
+  z-index: 1000;
+  width: 100%;
+  background-color: #101010;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  position: fixed;
+  top: 0px;
+}
+
+.navbar ul img {
+  width: 65px;
+}
+
+.navbar ul {
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 5px;
+  padding-left: 180px;
+  padding-right: 180px;
+}
+
+.navbar ul li {
+  list-style: none;
+  font-size: 30px;
+  font-weight: 500;
+}
