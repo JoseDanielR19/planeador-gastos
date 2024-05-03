@@ -12,7 +12,7 @@ import { ExpenseService } from '../services/expense-service.service';
   styleUrls: ['./modal.component.css'],
 })
 export class ModalComponent {
-  expense: Expense = { id: 0, nameExpend: '', priceExpend: 0 };
+  expense: Expense = { id: 0, nameExpend: '', priceExpend: "" };
 
   constructor(
     private modalSS: SwitchService,

@@ -19,7 +19,7 @@ export class ExpenseManagerComponent {
   selectedExpense: Expense | null = null;
   totalGastos: number = 0; // Agrega la variable para el total de gastos
 
-  presupuesto: number = 0;
+  presupuesto: any;
   presupuestoIngresado: number = 0;
   presupuestoGuardado: number = 0;
   saldoDisponibleGuardado: number = 0;

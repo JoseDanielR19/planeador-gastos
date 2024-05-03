@@ -24,9 +24,15 @@
           </div>
           <div class="available-balance">
             <p class="budget-text">Saldo disponible:</p>
+            @if (saldoDisponibleGuardado < 0) {
+            <p class="budget-number" style="color: red">
+              $ {{ saldoDisponibleGuardado.toLocaleString() }}
+            </p>
+            } @else {
             <p class="budget-number">
               $ {{ saldoDisponibleGuardado.toLocaleString() }}
             </p>
+            }
           </div>
           <div class="container-total-spends">
             <p class="total-text">Total Gastos:</p>
@@ -55,7 +61,10 @@
         <h1>Gastos ingresados</h1>
       </div>
       <div class="cards-spends">
-        <div *ngFor="let expense of expenses" class="card-spend animate__animated animate__fadeIn">
+        <div
+          *ngFor="let expense of expenses"
+          class="card-spend animate__animated animate__fadeIn"
+        >
           <div class="text-spend">
             <p>{{ expense.nameExpend }}</p>
             <button (click)="deleteExpense(expense.id)">
