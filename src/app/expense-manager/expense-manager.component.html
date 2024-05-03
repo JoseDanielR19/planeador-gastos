@@ -4,19 +4,29 @@
       <div class="container-text">
         <h1>Ingresa Aquí Tu Presupuesto</h1>
       </div>
-      <form action="" (ngSubmit)="onSubmit()">
+      <form>
         <div class="container-input">
           <span class="dollar-sign">$</span>
-          <input type="number" placeholder="Ingresa tu presupuesto" [(ngModel)]="budget.budget" />
+          <input
+            type="number"
+            placeholder="Ingresa tu presupuesto"
+            [(ngModel)]="presupuesto"
+            name="presupuesto"
+          />
         </div>
         <div class="color-container-info">
           <div class="container-budget">
             <p class="budget-text">Presupuesto:</p>
-            <p class="budget-number">$ {{budget.budget}}</p>
+            <p class="budget-number">
+              $ {{ presupuestoGuardado.toLocaleString() }}
+            </p>
+            <!-- Mostrar el presupuesto ingresado -->
           </div>
           <div class="available-balance">
             <p class="budget-text">Saldo disponible:</p>
-            <p class="budget-number">$ 300.000</p>
+            <p class="budget-number">
+              $ {{ saldoDisponibleGuardado.toLocaleString() }}
+            </p>
           </div>
           <div class="container-total-spends">
             <p class="total-text">Total Gastos:</p>
@@ -24,12 +34,11 @@
           </div>
         </div>
         <div class="btn-spend">
-          <button class="btn">Agregar Presupuesto</button>
+          <button class="btn" (click)="agregarPresupuesto()">
+            Agregar Presupuesto
+          </button>
         </div>
       </form>
-      <!-- <div class="btn-spend">
-        <button class="btn">Agregar Presupuesto</button>
-      </div> -->
     </div>
     <div class="container-spends">
       @if (expenses.length <= 0) {
@@ -46,7 +55,7 @@
         <h1>Gastos ingresados</h1>
       </div>
       <div class="cards-spends">
-        <div *ngFor="let expense of expenses" class="card-spend">
+        <div *ngFor="let expense of expenses" class="card-spend animate__animated animate__fadeIn">
           <div class="text-spend">
             <p>{{ expense.nameExpend }}</p>
             <button (click)="deleteExpense(expense.id)">

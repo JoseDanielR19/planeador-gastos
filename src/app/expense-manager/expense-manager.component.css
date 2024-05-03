@@ -58,7 +58,7 @@ h1 {
   border-radius: 10px;
   padding-left: 15px;
   margin-top: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 25px;
   display: grid;
   height: 30vh;
 }
@@ -134,7 +134,7 @@ h1 {
 }
 
 .cards-spends {
-  height: 355px;
+  height: 337px;
   overflow-y: auto;
   scrollbar-width: thin; /* Ancho del scroll más delgado */
   scrollbar-color: #1f1f1f #f0f0f073;
@@ -200,5 +200,5 @@ h1 {
 }
 
 .notFound {
-  height: 387px;
+  height: 373px;
 }

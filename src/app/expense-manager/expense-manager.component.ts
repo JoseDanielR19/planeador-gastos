@@ -4,8 +4,6 @@ import { SwitchService } from '../services/switch.service';
 import { Expense } from '../models/expense';
 import { CommonModule } from '@angular/common';
 import { ExpenseService } from '../services/expense-service.service';
-import { BudgetServiceService } from '../services/budget-service.service';
-import { Budget } from '../models/Budget';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -21,10 +19,15 @@ export class ExpenseManagerComponent {
   selectedExpense: Expense | null = null;
   totalGastos: number = 0; // Agrega la variable para el total de gastos
 
+  presupuesto: number = 0;
+  presupuestoIngresado: number = 0;
+  presupuestoGuardado: number = 0;
+  saldoDisponibleGuardado: number = 0;
+  saldoDisponible: number = 0;
+
   constructor(
     private modalSS: SwitchService,
-    private expenseService: ExpenseService,
-    private budgetService: BudgetServiceService
+    private expenseService: ExpenseService
   ) {}
 
   ngOnInit() {
@@ -36,6 +39,18 @@ export class ExpenseManagerComponent {
       this.expenses = updatedExpenses;
       this.updateTotalGastos(); // Actualiza el total de gastos al recibir nuevos gastos
     });
+
+    
+    const presupuesto = localStorage.getItem('presupuesto');
+    if (presupuesto !== null) {
+      this.presupuestoGuardado = JSON.parse(presupuesto);
+    }
+    
+    const saldo = localStorage.getItem('saldo');
+    if (saldo !== null) {
+      this.saldoDisponibleGuardado = JSON.parse(saldo);
+    }
+    this.saldoDisponibleGuardado = this.presupuestoGuardado - this.totalGastos; 
   }
 
   openModal(expense?: Expense) {
@@ -46,6 +61,7 @@ export class ExpenseManagerComponent {
   deleteExpense(expenseId: number) {
     this.expenseService.deleteExpense(expenseId);
     this.updateTotalGastos(); // Actualiza el total de gastos al eliminar un gasto
+    this.saldoDisponibleGuardado = this.presupuestoGuardado - this.totalGastos; 
   }
 
   updateExpense(expense: Expense) {
@@ -62,12 +78,17 @@ export class ExpenseManagerComponent {
     this.totalGastosFormatted = this.totalGastos.toLocaleString(); // Formatea el total
   }
 
-  budget: Budget = { budget: 0 };
-  saveBudget() {
-    this.budgetService.addPresupuesto(this.budget);
-  }
+  agregarPresupuesto() {
+    this.presupuestoIngresado = this.presupuesto;
+    this.saldoDisponible = this.presupuesto - this.totalGastos;
 
-  onSubmit() {
-    this.saveBudget();
+    localStorage.setItem(
+      'presupuesto',
+      JSON.stringify(this.presupuestoIngresado)
+    );
+
+    localStorage.setItem('saldo', JSON.stringify(this.saldoDisponible));
+
+    window.location.reload();
   }
 }
