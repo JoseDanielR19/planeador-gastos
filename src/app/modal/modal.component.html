@@ -6,7 +6,7 @@
       </button>
     </div>
     <div class="size-modal">
-      <form class="form" (ngSubmit)="onSubmit()">
+      <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="form">
         <div class="name-spend">
           <label for="name-spend">Nombre del gasto</label>
           <input

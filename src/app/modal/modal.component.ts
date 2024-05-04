@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { SwitchService } from '../services/switch.service';
 import { Expense } from '../models/expense';
 import { ExpenseService } from '../services/expense-service.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-modal',
@@ -12,7 +13,7 @@ import { ExpenseService } from '../services/expense-service.service';
   styleUrls: ['./modal.component.css'],
 })
 export class ModalComponent {
-  expense: Expense = { id: 0, nameExpend: '', priceExpend: "" };
+  expense: Expense = { id: 0, nameExpend: '', priceExpend: '' };
 
   constructor(
     private modalSS: SwitchService,
@@ -51,7 +52,11 @@ export class ModalComponent {
     window.location.reload();
   }
 
-  onSubmit() {
-    this.saveExpense();
+  onSubmit(form: NgForm) {
+    if (form.valid) {
+      this.saveExpense();
+    } else {
+      alert('El formulario no es válido');
+    }
   }
 }

@@ -129,7 +129,6 @@ h1 {
 .container-spends {
   display: grid;
   justify-items: center;
-  /* display: grid; */
   justify-content: center;
 }
 
@@ -142,7 +141,7 @@ h1 {
 
 /* Estilos específicos para navegadores WebKit (como Chrome, Safari) */
 .cards-spends::-webkit-scrollbar {
-  width: 6px; /* Ancho del scroll más delgado */
+  width: 6px;
   border-radius: 20px;
 }
 
